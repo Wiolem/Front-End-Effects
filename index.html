@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wiolem</title>
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <script type="text/javascript" src="js/ripple.js"></script>
+</head>
+<body>
+    <!-- Wrapper -->
+    <div class="wrapper">
+        <!-- main -->
+        <div id="main" class="main">
+            <!-- wiolem -->
+            <section id="w_msg" class="w_msg">
+                <h2 data-ripple id="btn_w">WIOLEM</h2>
+            </section>
+            <script type="text/javascript">
+                Array.prototype.forEach.call(document.querySelectorAll('[data-ripple]'), function(element){
+                    new RippleEffect(element);
+                });
+            </script>
+            <!-- case -->
+            <section id="w_case" class="w_case">
+                <span data-ripple id="btn_close">X</span>
+                <ul>
+                    <li><a target="_blank" href="case/TabControl/TabControl.html">TabControl</a></li>
+                    <li><a target="_blank" href="case/Accordion/accordion_h.html">Accordion_H</a></li>
+                    <li><a target="_blank" href="case/Accordion/accordion_v.html">Accordion_V</a></li>
+                    <li><a target="_blank" href="case/ChatFeature/ChatFeature.html">ChatFeature</a></li>
+                    <li><a target="_blank" href="case/CountDown/CountDown.html">CountDown</a></li>
+                    <li><a target="_blank" href="case/CountDown/DigitalClock.html">DigitalClock</a></li>
+                    <li><a target="_blank" href="case/Dilraba/dilraba.html">迪丽热巴</a></li>
+                    <li><a target="_blank" href="case/e-Album/e-album.html">e-Album</a></li>
+                    <li><a target="_blank" href="case/FlipPicture/flipPicture.html">FlipPicture</a></li>
+                    <li><a target="_blank" href="case/FoldFan/foldFan.html">FoldFan</a></li>
+                    <li><a target="_blank" href="case/Magnifier/MagnifierCSS/magnifier.html">Magnifier-CSS</a></li>
+                    <li><a target="_blank" href="case/Magnifier/MagnifierJS/Magnifier.html">Magnifier-JS</a></li>
+                    <li><a target="_blank" href="case/RotateAlbum/rotateAlbum.html">RotateAlbum</a></li>
+                    <li><a target="_blank" href="case/ScaleFlower/scaleFlower.html">ScaleFlower</a></li>
+                    <li><a target="_blank" href="case/SimpleCalendar/SimpleCalendar.html">SimpleCalender</a></li>
+                    <li><a target="_blank" href="case/Square/square.html">Square</a></li>
+                    <li><a target="_blank" href="case/SubNav/SubNavCSS.html">SubNav-CSS</a></li>
+                    <li><a target="_blank" href="case/SubNav/SubNavJS.html">SubNav-JS</a></li>
+                    <li><a target="_blank" href="case/SkinPeeler/index.html">SkinPeeler</a></li>
+                    <li><a target="_blank" href="case/Cat/cat.html">Doraemon</a></li>
+                    <li><a target="_blank" href="case/CustomBtnMenu/CustomBtnMenu.html">CustomBtnMenu</a></li>
+                    <li><a target="_blank" href="case/ProgressBar/ProgressBar.html">ProgressBar</a></li>
+                    <li><a target="_blank" href="case/MouseDrag/MouseDrag.html">MouseDrag</a></li>
+                    <li><a target="_blank" href="case/EditTable/EditTable.html">EditTable</a></li>
+                    <li><a target="_blank" href="case/SelectWidget/SelectWidget.html">SelectWidget</a></li>
+                    <li><a target="_blank" href="case/FormValidation/FormValidation.html">FormValidation</a></li>
+                    <li><a target="_blank" href="case/Carousel/Carousel/Carousel.html">Carousel-JS</a></li>
+                    <li><a target="_blank" href="case/Carousel/SuperCarousel/SuperCarousel.html">SuperCarousel-JS</a></li>
+                </ul>
+            </section>
+        </div>
+    </div>
+</body>
+<script>
+    var oMsg = document.getElementById("w_msg");
+    var oCase = document.getElementById("w_case");
+    var oBtn = document.getElementById("btn_w");
+    var aA = oCase.getElementsByTagName("a");
+    var oBtnClose = document.getElementById("btn_close");
+    oBtn.onclick = function () {
+        setTimeout(()=>{
+            oMsg.style.display = "none";
+            oCase.style.display = "block";
+        },500)    
+    }
+    oBtnClose.onclick = function () {
+        oCase.style.display = "none";
+        oMsg.style.display = "block";
+    }
+</script>
+</html>

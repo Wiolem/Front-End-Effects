@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{margin:0;padding:0;}
+		li{list-style:none}
+		header{margin:0 auto;text-align:center;height:50px;background:#162E62;}
+		ul{display:inline-block;}
+		ul li{float:left;line-height:40px;padding:0 15px;font-weight:400;margin:5px 10px;position:relative;color:#fff;border-radius:3px;}
+		.li_hover{background:hsla(0,0%,100%,.2);}
+		div{position:absolute;left:-25px;top:40px;display:none;border-radius:4px;background:#ddd;box-shadow:0 6px 12px rgba(0,0,0,.175);padding:15px 0;}
+		.p_hover{background:#f8f8fa;}
+		p{padding:2px 30px 2px 30px;line-height:20px;font-weight:400;color:#606060;font-size:14px;text-transform:capitalize;text-align:center;}
+	</style>
+</head>
+<body>
+	<header>
+		<ul>
+			<li>
+				<a>H5</a>
+				<div>
+					<p>HTML</p>
+					<p>ES5</p>
+					<p>ES6</p>
+				</div>
+			</li>
+			<li>
+				<a>JAVA</a>
+				<div>
+					<p>SQL</p>
+					<p>OBJECT</p>
+					<p>NET</p>
+					<p>BIG</p>
+				</div>
+			</li>
+			<li>
+				<a>PHP</a>
+				<div>
+					<p>MYSQL</p>
+					<p>XXS</p>
+				</div>
+			</li>
+			
+			<li>
+				<a>.NET</a>
+				<div>
+					<p>VS</p>
+					<p>VB</p>
+					<p>OFFICE</p>
+				</div>
+			</li>
+		</ul>
+	</header>
+</body>
+<script type="text/javascript">
+	var oUl = document.querySelector("ul");
+	var aLi = oUl.querySelectorAll("li");
+	var aDiv = oUl.querySelectorAll("div");
+	for (let i = 0; i < aLi.length; i++) {
+		aLi[i].onmouseover = function(){
+			aLi[i].className = "li_hover";
+			aDiv[i].style.display = "block";
+			var aP = aDiv[i].querySelectorAll("p");
+			for (let j = 0; j < aP.length; j++) {
+				aP[j].onmouseover = function(){
+					this.className = "p_hover";
+				}
+				aP[j].onmouseout = function(){
+					this.className = "";
+				}
+			}
+		}
+		aLi[i].onmouseout = function() {
+			aLi[i].className = "";
+			aDiv[i].style.display = "none";
+		}
+	}
+</script>
+</html>

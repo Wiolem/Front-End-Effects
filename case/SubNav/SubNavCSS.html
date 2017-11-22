@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CSS 二级导航</title>
+<style type="text/css">	
+	*{margin:0;padding:0;}
+	ul,li{list-style:none;}
+	a{text-decoration:none;}
+	h2{text-align:center;margin:20px auto;}
+	.nav{width:405px;height:30px;margin:0px auto;}
+	.nav li{float:left;margin-right:1px;position:relative;}
+	.nav li a{display:block;width:100px;height:30px;text-align:center;line-height:30px;background:#E3E3E3;color:#FFF;}
+	.nav li .sub_nav{position:absolute;display:none;}
+	.nav li .sub_nav_v{width:404px;}
+	.nav li .index_nav{position:absolute;left:0;top:0;z-index:-1;}
+	.nav li .index_nav li{position:absolute;left:0;top:0;transition:1s;}
+	.nav li:hover .sub_nav{display:block;}
+	.nav li:nth-child(1):hover li:nth-child(1){transform:translateY(30px)}
+	.nav li:nth-child(1):hover li:nth-child(2){transform:translateY(60px)}
+	.nav li:nth-child(1):hover li:nth-child(3){transform:translateY(90px)}
+	.nav a:hover{background:#E1CCCC;color:#FFF;}
+	</style>
+</head>
+
+<body>
+	<h2>CSS 二级导航</h2>
+	<ul class="nav">
+		<li>
+			<a href="#">首页</a>
+			<ul class="index_nav">
+				<li><a href="#">小米6</a></li>
+				<li><a href="#">Mix2</a></li>
+				<li><a href="#">红米Note</a></li>
+			</ul>
+		</li>
+		<li>
+			<a href="#">产品中心</a>
+			<ul class="sub_nav">
+				<li><a href="#">小米6</a></li>
+				<li><a href="#">Mix2</a></li>
+				<li><a href="#">红米Note</a></li>
+			</ul>
+		</li>
+		<li>
+			<a href="#">课程介绍</a>
+			<ul class="sub_nav sub_nav_v">
+				<li><a href="#">H5</a></li>
+				<li><a href="#">Java</a></li>
+				<li><a href="#">UI</a></li>
+				<li><a href="#">VR/AR</a></li>
+			</ul>
+		</li>
+		<li>
+			<a href="#">帮助中心</a>
+			<ul class="sub_nav sub_nav_v">
+				<li><a href="#">咨询电话</a></li>
+				<li><a href="#">投诉电话</a></li>
+				<li><a href="#">邮箱地址</a></li>
+			</ul>
+		</li>
+	</ul>
+</body>
+</html>

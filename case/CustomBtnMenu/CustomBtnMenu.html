@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{margin:0;padding:0;}
+		li{list-style:none;}
+		ul{width:200px;height:200px;background:rgba(0,0,0,.4);position:absolute;display:none;}
+		ul li{width:200px;height:50px;line-height:50px;font-size:16px;text-indent:2em;color:#fff;border-bottom:1px solid #ddd;}
+		ul li:hover{color:#ddd;background:rgba(0,0,0,.1);}
+	</style>
+</head>
+<body>
+	<ul id="menu">
+		<li>复制</li>
+		<li>粘贴</li>
+		<li>剪切</li>
+		<li>取消</li>
+	</ul>
+</body>
+<script type="text/javascript">
+	var oMenu = document.querySelector("#menu");
+	document.oncontextmenu = function(event){
+		var evt = event || window.event;
+		//阻止默认右键弹出事件
+		if (evt.preventDefault) {
+			evt.preventDefault();
+		}else{
+			window.event.returnValue = false;
+		}
+
+		oMenu.style.left = evt.clientX + "px";
+		oMenu.style.top = evt.clientY + "px";
+		oMenu.style.display = "block";
+	}
+	document.onclick = function(){
+		oMenu.style.display = "none";
+	}
+</script>
+</html>

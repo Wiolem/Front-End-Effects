@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>切换图片</title>
+	<style>
+		section{width:280px;height:196px;position:fixed;left:0;right:0;top:0;bottom:0;margin:auto;}
+		section div{width:280px;height:196px;background:red;position:absolute;text-align:center;line-height:196px;font-size:50px;font-weight:bold;color:#fff;transition:1s;backface-visibility:hidden;}
+		section div:nth-child(2){background:url(images/mn8.jpg) no-repeat center;transform:rotateY(180deg);}
+		section:hover div:nth-child(2){transform:rotateY(0);}
+		section:hover div:nth-child(1){transform:rotateY(180deg);}
+	</style>
+</head>
+
+<body>
+	  <section>
+	  		<div>啦啦</div>
+	  		<div></div>
+	  </section>
+</body>
+</html>

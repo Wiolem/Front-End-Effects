@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{margin:0;padding:0;}
+		.container{width:300px;height:400px;margin:20px auto;background:#ddd;border-radius:5px;overflow:hidden;border:2px solid #ddd;}
+		.chat{height:350px;background:pink;overflow:auto;}
+		.chat li{font-size:14px;background:rgba(58, 146, 217,.5);color:#fff;border-radius:5px;list-style:none;padding:5px 10px;margin:0 8px;}
+		.left{float:left;}
+		.right{float:right;}
+		.chat div{height:5px;clear:both;}
+		.txt{height:50px;position:relative;}
+		.txt textarea{width:100%;height:40px;border:0;padding:5px;}
+		.txt input{display:block;float:right;background:#0078D7;color:#fff;position:absolute;right:5px;bottom:5px;border:0;padding:3px 5px;}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div id="chat" class="chat">
+			<div></div>
+			<li class="left">吃饭了吗</li>
+			<div></div>
+			<li class="right">没有呢</li>
+			<div></div>
+			<li class="left">吃饭么</li>
+			<div></div>
+			<li class="right">吃了</li>
+			<div></div>
+			<li class="left">吃饭了吗</li>
+			<div></div>
+			<li class="right">没有呢</li>
+			<div></div>
+			<li class="left">吃饭么</li>
+			<div></div>
+			<li class="right">吃了</li>
+			<div></div>
+			<li class="left">吃饭了吗</li>
+			<div></div>
+			<li class="right">没有呢</li>
+			<div></div>
+			<li class="left">吃饭么</li>
+			<div></div>
+			<li class="right">吃了</li>
+			<div></div>
+			<li class="left">吃饭了吗</li>
+			<div></div>
+			<li class="right">没有呢</li>
+			<div></div>
+			<li class="left">吃饭么</li>
+			<div></div>
+			<li class="right">吃了</li>
+			<div></div>
+		</div>
+		<div class="txt">
+			<textarea id="text"></textarea>
+			<input id="sendBtn" type="button" name="" value="发送">
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	var oBtn = document.getElementById("sendBtn");
+	var oText = document.getElementById("text");
+	var oChat = document.getElementById("chat");
+	
+	function sendMsg(){
+		var sTxt = oText.value;
+		//2.创建聊天气泡
+		var li = document.createElement("li");
+		li.innerHTML = sTxt;
+		li.className = "right"
+		var div = document.createElement("div");
+		div.style.clear = "both";
+		//3.插入聊天气泡到聊天框
+		oChat.appendChild(li);
+		oChat.appendChild(div);
+		//滚动条跟随最新的气泡
+		li.scrollIntoView();
+		oText.value = "";
+	}
+	//1.发送按钮点击事件
+	oBtn.onclick = function(){
+		sendMsg();
+	}
+	oText.onkeydown = function(event){
+		var evt = event || window.event;
+		var code = evt.keyCode || evt.which;
+		if (code == 13 && evt.ctrlKey) {
+			sendMsg();
+		}
+	}
+</script>
+</html>

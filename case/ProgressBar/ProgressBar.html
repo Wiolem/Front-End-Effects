@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.box{width:600px;height:30px;border:3px solid #b6b6b6;box-shadow:0 0 5px rgba(0,0,0,.8);position:fixed;left:0;right:0;top:0;bottom:0;margin:auto;overflow:hidden;}
+		.progress{max-width:100%;width:0;height:30px;background:rgba(0,0,0,.5);position:relative;}
+		.progress span{position:absolute;right:8px;top:0;line-height:30px;color:pink;}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div id="proBar" class="progress">
+			<span id="proNum"></span>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	var timer = null;
+	var pause = false;
+	document.onclick = function(){
+		clearInterval(timer);
+		if (pause) {
+			pause = false;
+		}else{
+			pause = true;
+			timer = setInterval(function(){
+				if (proBar.offsetWidth >= 600) {
+					clearInterval(timer);
+				}else {
+                    proBar.style.width = proBar.offsetWidth + 1 + "px";
+                    proNum.innerHTML = getPrecent(proBar.offsetWidth + 1);
+				}
+			},10);
+		}
+	}
+	function getPrecent(num){
+		if (parseInt(num / 600 * 1000) / 10 >= 100) {
+			return "100%"		
+		}
+		return parseInt(num / 600 * 1000) / 10 + "%";
+	}
+</script>
+</html>

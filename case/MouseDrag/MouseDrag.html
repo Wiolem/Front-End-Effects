@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{margin:0;padding:0;}
+		div{width:200px;height:200px;background:rgba(0,0,0,.5);box-shadow:0 0 20px #333;position:absolute;left:533px;top:231px;}
+		div h2{height:50px;cursor:move;}
+		div h2 a{float:right;font-size:16px;line-height:50px;color:#fff;text-decoration:none;font-weight:100;padding-right:12px;cursor:pointer;}
+		div p span{display:block;height:50px;border-top:1px solid #fff;line-height:50px;font-size:16px;color:#ddd;text-indent:2em;}
+	</style>
+</head>
+<body>
+	<div style="">
+		<h2><a href="javascript:;">点击回到原位</a></h2>
+		<p>
+			<span>Drag : false</span>
+			<span>X : 533px</span>
+			<span>Y : 231px</span>
+		</p>
+	</div>
+</body>
+<script type="text/javascript">
+	var oDiv = document.querySelector("div");
+	var oH2 = oDiv.querySelector("h2");
+	var aSpan = oDiv.getElementsByTagName("span");
+	var oA = oH2.querySelector("a");
+	var route = [];
+	//鼠标按下
+	oH2.onmousedown = function(event){
+		var evt = event || window.event;
+		var left = evt.offsetX;
+		var top = evt.offsetY;
+		route.push({left:oDiv.offsetLeft,top:oDiv.offsetTop});
+		//鼠标移动
+		document.onmousemove = function(event){
+			var evt = event || window.event;
+			var l = evt.clientX - left;
+			var t = evt.clientY - top;
+			route.push({left:l,top:t});
+			oDiv.style.left = l + "px";
+			oDiv.style.top = t + "px";
+			aSpan[0].innerHTML = "Drag : " + true;
+			aSpan[1].innerHTML = "X : " + l + "px";
+			aSpan[2].innerHTML = "Y : " + t + "px";
+		}
+		//鼠标弹开
+		document.onmouseup = function(){
+			aSpan[0].innerHTML = "Drag : " + false;
+			document.onmousemove = null;
+			console.log(route);
+		}
+		//点击按钮恢复原位
+		var timer = null;
+		oA.onclick = function(event){
+			//阻止冒泡
+			var evt = event || window.event;
+			if (evt.stopPropagaton){
+				evt.stopPropagation();
+			}else{
+				evt.cancelBubble = true;
+			}
+
+			var i = route.length - 1;
+			clearInterval(timer);
+			timer = setInterval(function(){
+				if (i <= -1) {
+					clearInterval(timer);
+					route = [];
+				}else{
+					oDiv.style.left = route[i].left + "px";
+					oDiv.style.top = route[i].top + "px";
+					aSpan[0].innerHTML = "Drag : " + false;
+					aSpan[1].innerHTML = "X : " + route[i].left + "px";
+					aSpan[2].innerHTML = "Y : " + route[i].top + "px";
+					i--;
+				}
+			},30);
+		}
+	}
+</script>
+</html>

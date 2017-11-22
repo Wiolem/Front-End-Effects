@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{margin:0;padding:0;}
+		.box{margin:0 auto;width:210px;padding:20px;background: #eae9e9;}
+		.box table{width:100%;text-align:center;}
+		.box h1{text-align:center;margin:10px;font-size:20px;}
+		.box table td{width:58px;height:54px;margin:10px;border:4px solid #ddd;background:#424242;color:#fff;text-align:center;cursor:pointer;padding:5px;box-sizing:border-box;}
+		.box table td p{font-size:14px;}
+		.box table .active{background:#fff;color:#e84a7e;}
+		.btm{padding: 0 10px 10px;border:1px solid #fff;padding-top: 10px;background:#f1f1f1;color:#555;margin-top:10px;}
+		.btm p:nth-child(1){font-size:14px;margin-bottom:10px;font-weight:bold;}
+		.btm p:nth-child(2){font-size:12px;line-height:18px;}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<h1>简易日历</h1>
+		<table id="cal" cellpadding="0" cellspacing="0">	
+			<tbody>
+				<tr>
+					<td><h2>1</h2><p>JAN</p></td>
+					<td><h2>2</h2><p>FER</p></td>
+					<td><h2>3</h2><p>MAR</p></td>
+				</tr>
+				<tr>
+					<td><h2>4</h2><p>APR</p></td>
+					<td><h2>5</h2><p>MAY</p</td>
+					<td><h2>6</h2><p>JUN</p></td>
+				</tr>
+				<tr>
+					<td><h2>7</h2><p>JUL</p></td>
+					<td><h2>8</h2><p>AUG</p></td>
+					<td><h2>9</h2><p>SEP</p></td>
+				</tr>
+				<tr>
+					<td><h2>10</h2><p>OCT</p></td>
+					<td><h2>11</h2><p>NOV</p></td>
+					<td><h2>12</h2><p>DEC</p></td>
+				</tr>
+			</tbody>
+		</table>
+		<div id="act" class="btm">
+			<p>1月活动</p>
+			<p>出去吃饭吧</p>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	var aTab = document.getElementById("cal");
+	var oCal = aTab.getElementsByTagName("td");
+	var aAct = document.getElementById("act").children[0];
+	var aActCon = document.getElementById("act").children[1];
+	var arr = ['出去吃饭吧','出去喝酒吧','出去撸串吧','出去吃饭吧','出去喝酒吧','出去撸串吧','出去吃饭吧','出去喝酒吧','出去撸串吧','出去吃饭吧','出去喝酒吧','出去撸串吧']
+	for (var i = 0; i < oCal.length; i++) {
+		oCal[i].index = i;
+		oCal[i].onclick = function(){
+
+			for (var j = 0; j < oCal.length; j++) {
+				oCal[j].className = "";
+			}
+
+			this.className = "active";
+			aAct.innerHTML = this.index + 1 +"月活动";
+			aActCon.innerHTML = arr[this.index];
+		}
+	}
+
+</script>
+</html>

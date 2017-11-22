@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>机器猫</title>
+<style>
+	*{margin:0;padding:0;}
+	body{background:pink;}
+	h1{text-align:center;padding-top:25px;}
+	.box{width:400px;height:490px;background:white;margin:25px auto;padding-top:10px;position:relative;}
+	.box .header{width:310px;height:200px;background:#0EADD7;margin:0 auto;border:2px solid #000;border-radius:160px;padding-top:80px;}
+	.box .header .face{width:265px;height:150px;background:#fff;margin:0 auto;border:2px solid #000;border-radius:130px/100px;padding-top:35px;position:relative;}
+	.eye{height:30px;border:2px solid #000;border-radius:35px;background:#fff;}
+	.eye_p{width:15px;height:15px;background:#000;border-radius:7px;}
+	.box .header .face .eye_l{width:30px;position:absolute;left:57px;top:-38px;padding:53px 0 0 42px;}
+	.box .header .face .eye_r{width:60px;position:absolute;right:57px;top:-38px;padding:53px 0 0 12px;}
+	.box .header .nose{width:32px;height:32px;background:#CA3E01;margin:0 auto;border:2px solid #000;border-radius:16px;}
+	.box .header .nose_line{width:3px;height:85px;background:#000;margin:0 auto;}
+	.box .header .mouth{width:120px;height:50px;border-radius:70px/25px;border-bottom:2px solid #000;margin:0 auto;margin-top:-50px;}
+	.box .nack{width:230px;height:20px;border-radius:8px;background:#971601;margin:0 auto;margin-top:22px;border:2px solid #000;border-bottom:0;}
+	.box .bell{width:40px;height:30px;background:#E4DC17;border-radius:22px;margin:0 auto;position:absolute;bottom:-48px;left:110px;border:2px solid #000;padding-top:10px;}
+	.box .bell .bell_line1{height:2px;width:36px;background:#000;margin:0 auto;}
+	.box .bell .bell_line2{height:2px;width:40px;background:#000;margin:0 auto;margin-top:2px;}
+	.box .bell .bell_point{height:10px;width:10px;border-radius:5px;background:#000;margin:0 auto;margin-top:4px;}
+	.box .bell .bell_line3{height:10px;width:2px;background:#000;margin:0 auto;}
+	.box .body{width:220px;height:155px;background:#0091B8;margin:0 auto;border:2px solid #000;}
+	.box .body .tripe{width:170px;height:153px;background:#fff;border-radius:80px;margin:0 auto;margin-top:-40px;border:2px solid #000;padding-top:17px;}
+	.box .body .tripe .bag{width:135px;height:67px;border:2px solid #000;border-radius:0 0 135px 135px;margin:0 auto;margin-top:68px;}
+	.box .body .tripe .foot_center{width:24px;height:12px;background:#fff;margin:0 auto;border:2px solid #000;border-radius:24px 24px 0 0;border-bottom:2px solid #fff;margin-top:24px;}
+	.foot{width:123px;height:30px;border:2px solid #000;}
+	.footer{width:260px;height:34px;margin:0 auto;margin-top:-2px;}
+	.footer .footer_l{float:left;border-radius:30px 20px 20px 10px/30px 20px 20px 10px;}
+	.footer .footer_r{float:right;border-radius:20px 30px 10px 20px/20px 30px 10px 20px;}
+	.arm{width:80px;height:60px;border:2px solid #000;background:#0091B8;}
+	.arm_p{width:60px;height:60px;border:2px solid #000;border-radius:32px;margin-top:-2px;background:#fff;}
+	.arm_l{position:absolute;left:6px;bottom:142px;border-radius:30px 0 0 30px;border-right:2px solid #0091B8;}
+	.arm_l .arm_l_p{margin-left:-2px;}
+	.arm_r{position:absolute;right:6px;bottom:142px;border-radius:0 30px 30px 0;border-left:2px solid #0091B8;}
+	</style>
+</head>
+
+<body>
+	<h1>机器猫</h1>
+	<div class="box">
+		<div class="header">
+			<div class="face">
+				<div class="eye eye_l">
+					<div class="eye_p"></div>
+				</div>
+				<div class="eye eye_r">
+					<div class="eye_p"></div>
+				</div>
+				<div class="nose"></div>
+				<div class="nose_line"></div>
+				<div class="mouth"></div>
+				<div class="nack"></div>
+				<div class="bell">
+					<div class="bell_line1"></div>
+					<div class="bell_line2"></div>
+					<div class="bell_point"></div>
+					<div class="bell_line3"></div>
+				</div>
+			</div>
+		</div>
+		<div class="body">
+			<div class="tripe">
+				<div class="bag"></div>
+				<div class="foot_center"></div>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="foot footer_l"></div>
+			<div class="foot footer_r"></div>
+		</div>
+		<div class="arm arm_l">
+			<div class="arm_p arm_l_p"></div>
+		</div>
+		<div class="arm arm_r">
+			<div class="arm_p arm_r_p"></div>
+		</div>
+	</div>
+</body>
+</html>

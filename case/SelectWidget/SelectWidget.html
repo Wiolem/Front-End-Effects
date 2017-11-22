@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{margin:0;padding:0;}
+		form{width:200px;margin:10px auto;background:#ddd;border-radius:5px;text-align:center;padding:5px;}
+		form input{height:20px;border:0;}
+		form input:nth-of-type(1){width:150px;padding-left:10px;}
+		ul{display:none;margin-left:10px}
+		ul li{list-style:none;font-size:12px;text-align:left;margin:10px 0;cursor:pointer;}
+	</style>
+	<script type="text/javascript">
+		window.onload = function(){
+			var aBtn = document.getElementsByTagName("input");
+			var oUl = document.getElementById("list");
+			var aLi = oUl.getElementsByTagName("li");
+			aBtn[0].onclick = function(event){
+				var evt = event || window.event;
+				if(evt.stopPropagation){
+					evt.stopPropagation();
+				}else{
+					evt.cancelBubble = true;
+				}
+				oUl.style.display = "block";
+			}
+			for (var i = 0; i < aLi.length; i++) {
+				aLi[i].onclick = function(event){
+					aBtn[0].value = this.innerHTML;
+				}
+			}
+
+			document.onclick = function(event){
+				oUl.style.display = "none";
+			}
+		}
+	</script>
+</head>
+<body>
+	<form>
+		<input id="s_txt" type="text" name="">
+		<input id="s_btn" type="button" name="" value="搜索">
+		<ul id="list">
+			<li>英雄联盟</li>
+			<li>王者荣耀</li>
+			<li>绝地求生</li>
+			<li>荒野求生</li>
+			<li>守望先锋</li>
+		</ul>
+	</form>
+
+</body>
+</html>

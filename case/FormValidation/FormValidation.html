@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="common.js"></script>
+	<style type="text/css">
+		*{margin:0;padding:0;}
+		.box{width:400px;margin:25px auto;}
+		.b_form p{border:solid 1px #ddd;width:398px;height:52px;}
+		.b_form label{float:left;width:90px;height:52px;line-height:52px;padding-left:20px;}
+		.b_form .filed{border:0 none;font-size:14px;width:190px;height:19px;padding-bottom:11px;padding-left:20px;padding-top:16px;outline:none;}
+		.b_form .submit{width: 100%;height: 54px;color: #fff;background: #e22;border: 0;font-size: 16px;font-family: "Microsoft YaHei","Hiragino Sans GB";}
+		.b_form div{color: #c5c5c5;height: 27px;font-size: 12px;padding-top: 5px;}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<form id="form" action="www.baidu.com" class="b_form" name="">
+			<p>
+				<label>用 户 名</label>
+				<input id="UserId" class="filed" type="text" name="" placeholder="您的账户名和登录名">
+			</p>
+			<div><span></span></div>
+			<p>
+				<label>设 置 密 码</label>
+				<input id="Password" class="filed" type="password" name="" placeholder="建议至少使用两种字符组合">
+			</p>
+			<div><span></span></div>
+			<p>
+				<label>确 认 密 码</label>
+				<input id="Re-enterPass" class="filed" type="password" name="" placeholder="请再次输入密码">
+			</p>
+			<div><span></span></div>
+			<p>
+				<label>中国0086</label>
+				<input id="Mobile" class="filed" type="text" name="" placeholder="建议使用常用手机">
+			</p>
+			<div><span></span></div>
+			<p>
+				<input id="Submit" class="submit" type="submit" name="" value="立即注册">
+			</p>
+		</form>
+	</div>
+</body>
+<script type="text/javascript">
+	var oForm = $("form");
+	var aDiv = oForm.querySelectorAll("div");
+	var aInput = oForm.querySelectorAll("input");
+	var aP = oForm.querySelectorAll("p");
+	var arr = ["支持中文、字母、数字、“-”“_”的组合，4-20个字符","建议使用字母、数字和符号两种及以上的组合，6-20个字符","请再次输入密码","完成验证后，你可以用该手机登录和找回密码"];
+	var oUser = $("UserId");
+	var oPass = $("Password");
+	var oRePass = $("Re-enterPass");
+	var oMobile = $("Mobile");
+	var oSubBtn = $("Submit");
+	delegation(oForm,"input","onclick",function(event,index){
+		console.log(event);
+		if (index <= 3) {
+			setTip(arr[index],index,true);
+		}
+	});
+	//用户名
+	oUser.onblur = function(){
+		var reg = /^[\u4e00-\u9fa5aa-zA-Z0-9_-]{4,20}$/g;
+		if (reg.test(oUser.value)) {
+			this.pass = true;
+			setTip("格式正确",0,true);
+		}else{
+			this.pass = false;
+			setTip("格式错误！",0,false);
+		}
+	}
+	//密码
+	oPass.onblur = function(){
+		var reg = /^[a-zA-Z0-9_!@#$%^&*-]{6,20}$/g;
+		if (reg.test(oPass.value)) {
+			var temp = 0;
+			if (/[a-zA-Z]/g.test(oPass.value)) {
+				temp++
+			}
+			if (/[0-9]/g.test(oPass.value)) {
+				temp++
+			}
+			if (/[_!@$%^&*-]/g.test(oPass.value)) {
+				temp++;
+			}
+			switch(temp){
+				case 1:setTip("格式错误,密码强度：弱.至少包含字母、数字和符号两种及以上的组合",1,false);break;
+				case 2:setTip("格式正确,密码强度：中",1,true);this.pass = true;break;
+				case 3:setTip("格式正确,密码强度：强",1,true);this.pass = true;break;
+			}
+		}else{
+			this.pass = false;
+			setTip("格式错误！",1,false);
+		}
+	}
+	//再次确认
+	oRePass.onblur = function(){
+		if (oRePass.value == oPass.value && oRePass.value != "") {
+			this.pass = true;
+			setTip("输入正确",2,true);
+		}else{
+			this.pass = false;
+			setTip("密码不一致",2,false);
+		}
+	}
+	//手机
+	oMobile.onblur = function(){
+		var reg = /^1[3|4|5|7|8][0-9]\d{4,8}$/g;
+		if (reg.test(oMobile.value)) {
+			this.pass = true;
+			setTip("格式正确",3,true);
+		}else{
+			this.pass = false;
+			setTip("格式错误",3,false);
+		}
+	}
+
+	//提交
+	oSubBtn.onclick = function(event){
+		var pass = true;
+		for (var i = 0; i < aInput.length - 1; i++) {
+			if (!aInput[i].pass) {
+				pass = false;
+				break;
+			}
+		}
+		if(!pass){
+			prevDefaultEvent(event);
+		}
+	}
+	//设置步骤Tip
+	function setTip(str,index,isTrue){
+		aDiv[index].innerHTML = str;
+		if (!isTrue) {
+			aP[index].style.borderColor = "red";
+			aDiv[index].style.color = "red";
+		}else{
+			aP[index].style.borderColor = "#ddd";
+			aDiv[index].style.color = "#c5c5c5";
+		}
+	}
+
+</script>
+</html>

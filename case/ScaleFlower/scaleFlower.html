@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>渐变花</title>
+	<style>
+		section{width:280px;height:196px;position:fixed;left:0;right:0;top:0;bottom:0;margin:auto;}
+		section img{position:absolute;transform:scale(0);}
+		section img:nth-child(1){animation:huaScale 3s linear infinite;}
+		section img:nth-child(2){animation:huaScale 3s 1s linear infinite;}
+		section img:nth-child(3){animation:huaScale 3s 2s linear infinite;}
+		section img:nth-child(4){animation:huaScale 3s 3s linear infinite;}
+		section img:nth-child(5){animation:huaScale 3s 4s linear infinite;}
+		@keyframes huaScale{
+			0%{transform:scale(0);opacity:0;}
+			25%{transform:scale(0.5);opacity:0.5}
+			50%{transform:scale(1);opacity:1}
+			75%{transform:scale(1.5);opacity:0.5}
+			100%{transform:scale(2);opacity:0}
+		}
+	</style>
+</head>
+
+<body>
+	 <section>
+	 	<img src="images/hua2.png" alt="">
+	 	<img src="images/hua2.png" alt="">
+	 	<img src="images/hua2.png" alt="">
+	 	<img src="images/hua2.png" alt="">
+	 	<img src="images/hua2.png" alt="">
+	 </section>
+</body>
+</html>

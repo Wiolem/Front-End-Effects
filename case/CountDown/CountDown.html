@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{margin:0;padding:0;}
+		.box{width:400px;height:200px;background:rgba(0,0,0,.5);color:#fff;border-radius:20px;position:fixed;left:0;right:0;top:0;bottom:0;margin:auto;text-align:center;font-size:40px;overflow:hidden;}
+		.box h2{line-height:100px;background:#000;}
+		.box p{line-height:100px;font-size:36px;}
+	</style>
+</head>
+<body>
+	<input type="text" name="" value="2017-11-11" id="txt">
+	<input type="button" name="" id="btn" value="开始">
+	<div class="box">
+		<h2>倒计时</h2>
+		<p id="clockNum">00天00:00:00</p>
+	</div>
+</body>
+<script type="text/javascript">
+	var time = null;
+	btn.onclick = function(){
+		var clockStr = txt.value;
+		getClockNum(clockStr);
+		if (time == null) {
+			time = setInterval(function(){
+				clockNum.innerHTML = getClockNum(clockStr);
+			},100);
+		}else{
+			clearInterval(time);
+			time = setInterval(function(){
+				clockNum.innerHTML = getClockNum(clockStr);
+			},100);
+		}
+	}
+
+	function getClockNum(dateStr){
+		var d = new Date(dateStr);
+		d.setHours(0);//默认东八时区
+		var msD = d.getTime();
+		var msNow = new Date();
+		var msTime = msD - msNow;
+		if (msTime < 0) {
+			return "00 天 00 : 00 : 00";
+		}
+		var date = msTime / 1000 / 3600 / 24;
+		var hour = (date - parseInt(date)) * 24;
+		var minute = (hour - parseInt(hour)) * 60;
+		var second = (minute - parseInt(minute)) * 60;
+		var ms = (second - parseInt(second)) * 10;
+		
+		var strTime = getZeroNum(date) + " 天 " + getZeroNum(hour) +" : "+ getZeroNum(minute)+" : "+getZeroNum(second) +" : "+getZeroNum(ms);
+
+		return strTime;
+	}
+
+	function getZeroNum(num){
+		var number = parseInt(num);
+		if (number <= 9) {
+			number = "0" +  number;
+		}
+		return number;
+	}
+</script>
+</html>
