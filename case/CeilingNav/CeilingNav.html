@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>吸顶菜单</title>
+	<style type="text/css">
+		*{margin:0;padding:0;}
+		body{height:3000px;}
+		li{list-style:none;}
+		nav{height:50px;background:#01204F;}
+		div{width:1000px;margin:0 auto;position:relative;}
+		ul{color:#fff;height:50px;position:absolute;left:50%;margin-left:-332px;}
+		ul li{display:inline-block;float:left;height:50px;line-height:50px;padding:0 20px;cursor:pointer;}
+		.box{display:block;height:50px;background:red;position:absolute;left:168px;}
+	</style>
+</head>
+<body>
+	<nav>
+		<div>
+			<span class="box"></span>
+			<ul>
+				<li>新闻</li>
+				<li>资讯</li>
+				<li>百家</li>
+				<li>互联网</li>
+				<li>国内</li>
+				<li>军事</li>
+				<li>社会</li>
+				<li>时尚</li>
+				<li>汽车</li>
+			</ul>
+		</div>
+	</nav>
+</body>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/move_1.0.js"></script>
+<script type="text/javascript">
+	var oNav = $$("nav");
+	var oUl = $$("ul");
+	var aLi = $$("li",true);
+	var oBox = $$(".box");
+	var curIndex = 0;
+	oBox.style.width = aLi[0].offsetWidth + "px";
+	var boxLeft = oBox.offsetLeft;
+
+	for (let i = 0; i < aLi.length; i++) {
+		aLi[i].onmouseenter = function(){
+			move(oBox,"left",this.offsetLeft + boxLeft);
+			oBox.style.width = this.offsetWidth + "px";
+		}
+		aLi[i].onmouseleave = function(){
+			move(oBox,"left",aLi[curIndex].offsetLeft + boxLeft);
+			oBox.style.width = aLi[curIndex].offsetWidth + "px";
+		}
+		aLi[i].onclick = function(){
+			curIndex = i;
+			oBox.style.left = this.offsetLeft + boxLeft + "px";
+		}
+	}
+
+	window.onscroll = function(){
+		oNav.style.top = 0;
+		oNav.style.position = "fixed";
+		oNav.style.width = "100%";
+	}
+ </script>
+</html>
