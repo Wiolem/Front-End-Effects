@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>WaterFall</title>
+	<style type="text/css">
+		*{margin:0;padding:0;}
+		.container{margin:0 auto;position:relative;}
+		.box{float:left;box-sizing:border-box;padding:5px;}
+		.box img{width:260px;}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="box">
+			<img src="images/1.jpg">
+		</div>
+		<div class="box">
+			<img src="images/2.jpg">
+		</div>
+		<div class="box">
+			<img src="images/3.jpg">
+		</div>
+		<div class="box">
+			<img src="images/4.jpg">
+		</div>
+		<div class="box">
+			<img src="images/5.jpg">
+		</div>
+		<div class="box">
+			<img src="images/6.jpg">
+		</div>
+		<div class="box">
+			<img src="images/7.jpg">
+		</div>
+		<div class="box">
+			<img src="images/8.jpg">
+		</div>
+		<div class="box">
+			<img src="images/9.jpg">
+		</div>
+		<div class="box">
+			<img src="images/10.jpg">
+		</div>
+		<div class="box">
+			<img src="images/11.jpg">
+		</div>
+		<div class="box">
+			<img src="images/12.jpg">
+		</div>
+		<div class="box">
+			<img src="images/13.jpg">
+		</div>
+		<div class="box">
+			<img src="images/14.jpg">
+		</div>
+		<div class="box">
+			<img src="images/15.jpg">
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript">
+
+	window.onload = function(){
+		load();
+	}
+
+	function load(){
+		//定宽
+		var oCon = $$(".container");
+		var aBox = $$(".box",true);
+		var maxNum = Math.floor(document.documentElement.clientWidth / aBox[0].offsetWidth);//8
+		console.log(maxNum);
+		oCon.style.width = maxNum * aBox[0].offsetWidth + "px";
+
+		var aHeight = [];
+		for (var i = 0; i < aBox.length; i++) {
+			if (i < maxNum) {
+				aHeight.push(aBox[i].offsetHeight);
+				console.log(aHeight);
+			}else{
+				var minHeight = Math.min.apply(false,aHeight);
+				var minIndex = aHeight.indexOf(minHeight);
+				aBox[i].style.position = "absolute";
+                aBox[i].style.left = aBox[minIndex].offsetLeft + "px";
+                aBox[i].style.top = minHeight + "px";
+
+                aHeight[minIndex] = aBox[i].offsetHeight + aHeight[minIndex];
+			}
+		}
+	}
+
+	//自动加载
+	onscroll = function(){
+		var oCon = $$(".container");
+		var aBox = $$(".box",true);
+		var cHeight = document.documentElement.clientHeight;
+        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        var lastBox = aBox[aBox.length - 1];
+        if(cHeight + scrollTop >= lastBox.offsetTop){
+            var sHtml = "";
+           	for (var i = 0; i < 15; i++) {
+           		sHtml += `<div class="box">
+					<img src="images/${i + 1}.jpg">
+				</div>`
+            	}
+           	oCon.innerHTML += sHtml;
+           	load();
+        }
+	}
+</script>
+</html>
