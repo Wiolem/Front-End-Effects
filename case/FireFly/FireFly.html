@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style type="text/css">
+	*{padding:0;margin:0;}
+	#bg{background:url(img/bg.jpg) no-repeat;background-size:cover;width:100%;height:100%;position:fixed;}
+	img{width:18px;height:18px;position:absolute;}
+    </style>
+</head>
+<body>
+    <div id="bg"></div>
+</body>
+</html>
+<script src="js/common.js"></script>
+<script type="text/javascript">
+	window.onload = function(){
+		for (var i = 0; i < 60; i++) {
+			new FireFly().init();
+		}
+	}
+	function FireFly(){
+		this.bg = document.getElementById("bg");
+		this.fire = new Image();
+		this.init = function(){
+			this.make();
+			var _this = this;
+			setInterval(function(){
+				_this.move();
+			},2000);
+		}
+		this.make = function(){
+			this.bg.appendChild(this.fire);
+			this.fire.style.left = getRandomNum(0,window.innerWidth - this.fire.offsetWidth) + "px";
+			this.fire.style.top = getRandomNum(0,window.innerHeight - this.fire.offsetHeight) + "px"; 
+			this.fire.src = "img/1.gif";
+		}
+		this.move = function(){
+			moveMultiAttr2(this.fire,
+				{left:getRandomNum(0,window.innerWidth - this.fire.offsetWidth),
+				top:getRandomNum(0,window.innerHeight - this.fire.offsetHeight)});
+		}
+	}
+</script>
+ 

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Firework</title>
+	<style type="text/css">
+	html,
+	body{overflow:hidden;}
+	body{background:#000;}
+	.fire{width:3px;height:3px;background:white;position:absolute;}
+	.spark{position:absolute;width:6px;height:6px;border-radius:3px;box-shadow:0 0 5px rgba(255,255,255,.5);}
+	</style>
+</head>
+<body>
+</body>
+</html>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript">
+	
+	window.onload = function(){
+		document.onclick = function(event){
+			var evt = event || window.event;
+			new Fire({X:evt.pageX,Y:evt.pageY}).init();
+		}
+	}
+	
+	function Fire(pos){
+		this.pos = pos;
+		this.fire = document.createElement("div");
+		this.init = function(){
+			document.body.appendChild(this.fire);
+			this.fire.className = "fire";
+			this.fire.style.left = this.pos.X + "px";
+			this.fire.style.top = window.innerHeight + "px";
+			this.move();
+		}
+		this.move = function(){
+			moveMultiAttr(this.fire,{top:this.pos.Y},function(){
+				this.fire.remove();
+				this.boom();
+			}.bind(this));
+		}
+		this.boom = function(){
+			for (var i = 0; i < getRandomNum(60,80); i++) {
+				new Spark(this.pos).init();
+			}
+		}
+	}
+
+	function Spark(pos){
+		this.pos = pos;
+		this.spark = document.createElement("div");
+		this.init = function(){
+			document.body.appendChild(this.spark);
+			this.spark.className = "spark";
+			this.spark.style.backgroundColor = getRandomColor(true);
+			this.spark.style.left = this.pos.X + "px";
+			this.spark.style.top = this.pos.Y + "px";
+			this.drop();
+		}
+		this.drop = function(){
+			this.timer = null;
+			this.speedX = getRandomNum(-5,5);
+			this.speedY = getRandomNum(-5,5);
+			this.g = 4;
+			this.count = 0;
+			this.timer = setInterval(function(){
+				if (this.count % 5 == 0) {
+					this.speedY += this.g;
+				}
+				this.count++;
+				this.spark.style.left = this.spark.offsetLeft + this.speedX + "px";
+				this.spark.style.top = this.spark.offsetTop + this.speedY + "px";
+				if (this.count * 5 > getRandomNum(100,300)) {
+					clearInterval(this.timer);
+					this.spark.remove();
+				}
+			}.bind(this),30);
+		}
+	}
+</script>

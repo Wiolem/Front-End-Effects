@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BreakWall</title>
+    <style>
+        *{margin:0px; padding:0px;}
+        #container{width:1000px;height:500px;border:orange solid 1px;margin:40px 0 0 200px;position:relative}
+        #box{box-shadow: 4px 4px 4px 0 #ccc;width:680px;font-size:55px;text-align:center;line-height:400px;height:400px;position:relative;border:orangered solid 1px;margin:20px 60px;}
+        button{background-color:#666;color:#fff;margin-left:300px;width:100px;height:30px;}
+        button:hover{  background-color: #000;}
+        #bubble{width:15px;height:15px;
+            background-color: red;
+            border-radius:50%;
+            position:absolute;
+            bottom: 12px;
+            left:180px;
+            box-shadow: 4px 4px 2px 0 #ccc;
+        }
+        #board{width:150px;height:10px;
+            background-color: orange;
+            border-radius:5px;
+            position:absolute;
+            bottom:2px;
+            box-shadow:3px 3px 2px 0 #ccc;
+            left:160px;
+            }
+        ul{list-style:none;}
+        ul>li{width:66px;height:15px;
+            background-color: #069;
+        border:solid 1px #ccc;position:absolute; }
+        #show{
+            position:absolute;
+            right:30px;
+            top:20px;
+            width:200px;
+            height:400px;
+            border:dotted 1px #888;
+            background-color: #333;
+        }
+        #show span{display:block;
+            color:#0f0;
+            font-family: "微软雅黑";
+            height:30px;
+            line-height:30px;
+            padding:5px;
+        }
+        span#info{display:block;font-size:22px;line-height:50px;height:50px;border-bottom:solid 1px #0f0}
+        #time, #res, #times, #score{border-bottom:dashed 1px #0f0}
+    </style>
+</head>
+<body>
+    <!-- 游戏面板 -->
+    <div id="container">
+    	 <!--提示信息 -->
+        <div id="show">
+            <span id="info">游戏重要信息</span>
+            <span>当前时间：</span>
+            <span id="time">加载中...</span>
+            <span>游戏状态</span>
+            <span id="res">加载中...</span>
+            <span>挡板打球次数</span>
+            <span id="times">加载中...</span>
+            <span>游戏得分</span>
+            <span id="score">加载中...</span>
+        </div>
+        <!-- 游戏区域 -->
+        <div id="box">
+            <!-- 挡板、小球、砖块 -->
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+            <div id="bubble"></div>
+            <div id="board"></div>
+        </div>
+        <button id="start">开始游戏</button>
+    </div>
+</body>
+</html>
+<script type="text/javascript" src="js/common.js"></script>
+<script>
+    class Brick{
+        constructor(){
+            this.start = $$("#start");
+            this.show = $$("#show");
+            this.box = $$("#box");
+            this.bubble = $$("#bubble");
+            this.board = $$("#board");
+            this.scoreSpan = $$("#score");
+            this.resSpan = $$("#res");
+            this.timeSpan = $$("#time");
+            this.timesSpan = $$("#times");
+            this.times = 0;
+            this.score = 0;
+            this.res = false;
+            this.time = null;
+            this.timer = null;
+            this.timers= null;
+        }
+        init(){
+            this.sort();
+            this.start.onclick = function(){
+                this.time = new Date();
+                this.resSpan.innerHTML = "进行中";
+                this.timerS = setInterval(function(){
+                    this.timeSpan.innerHTML = parseInt((new Date() - this.time) / 1000) + "秒";
+                }.bind(this),30);
+                this.jump();
+                this.moveKey();
+                this.down();
+            }.bind(this);
+        }
+        sort(){
+            this.bricks = this.box.querySelector("ul").children;
+            this.row = -1;
+            for (var i = 0; i < this.bricks.length; i++) {
+                if (i % 10 == 0) {
+                    this.row++;
+                }
+                this.bricks[i].style.backgroundColor = getRandomColor(true);
+                this.bricks[i].style.left = this.bricks[i].offsetWidth * (i % 10) + "px";
+                this.bricks[i].style.top = this.bricks[i].offsetHeight * this.row + "px";
+            }
+        }
+        jump(){
+            this.speedX = 3;
+            this.speedY = 3;
+            this.maxLeft = this.box.offsetWidth - this.bubble.offsetWidth;
+            this.maxTop = this.box.offsetHeight - this.bubble.offsetHeight;
+            this.timer = setInterval(function(){
+                if (this.bubble.offsetLeft < 0 || this.bubble.offsetLeft >= this.maxLeft) {
+                    this.speedX *= -1;
+                }
+                if (this.bubble.offsetTop < 0) {
+                    this.bubble.style.top = 0;
+                    this.speedY *= -1;
+                }
+                if (impact(this.bubble,this.board)) {
+                    this.bubble.style.top = this.board.offsetTop - this.bubble.offsetHeight + "px";
+                    this.speedY *= -1;
+                    this.timesSpan.innerHTML = this.times;
+                    this.times++;
+                }
+                if (this.bubble.offsetTop >= this.maxTop) {
+                    this.box.appendChild(document.createTextNode("Game Over! 得分：" + this.score + " 分"));
+                    clearInterval(this.timerS);
+                    clearInterval(this.timer);
+                    setTimeout(function(){
+                        location.reload();
+                    },2000);
+                }
+                this.bubble.style.left = this.bubble.offsetLeft + this.speedX + "px";
+                this.bubble.style.top = this.bubble.offsetTop + this.speedY + "px";
+                for (var i = 0; i < this.bricks.length; i++) {
+                    if (impact(this.bubble,this.bricks[i])) {
+                        this.score++;
+                        this.scoreSpan.innerHTML = this.score;
+                        this.bricks[i].style.display = "none";
+                        this.speedY *= -1;
+                    }
+                }
+            }.bind(this),30);
+        }
+        moveKey(){
+            document.onkeydown = function(event){
+                var evt = event.keyCode || event.which;
+                if (evt == 37) {
+                    this.board.style.left = this.board.offsetLeft - 8 + "px";
+                }
+                if (evt == 39) {
+                    this.board.style.left = this.board.offsetLeft + 8 + "px";
+                }
+            }.bind(this);
+        }
+        down(){
+            this.board.onmousedown = function(event){
+                var evt = event || window.event;
+                this.disX = evt.pageX - this.box.offsetLeft - this.board.offsetLeft;
+                console.log(this.disX);
+                document.onmousemove = function(evt){
+                    this.move(evt);
+                }.bind(this);
+                document.onmouseup = function(){
+                    this.up();
+                }.bind(this);
+            }.bind(this);
+        }
+        move(evt){
+            var evt = evt || window.event;
+            this.board.style.left = evt.pageX - this.box.offsetLeft - this.disX + "px";
+        }
+        up(){
+            document.onmousemove = null;
+        }
+    }
+    window.onload = function(){
+        new Brick().init();
+    }
+</script>
