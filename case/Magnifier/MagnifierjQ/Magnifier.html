@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+	*{margin:0;padding:0;}
+	ul,
+	ol{list-style:none;}
+	#box{position:relative;margin:100px auto;border:1px solid #ccc;width:350px;height:350px;}
+	#box ul{overflow:hidden;border-top:1px solid #ccc;position:absolute;top:350px;left:0;width:350px;}
+	#box li{float:left;border-top:none;}
+	.small{width:350px;height:350px;background:red;}
+	.small img{position:absolute;top:0;left:0;}
+	#bottom li{width:85px;margin-top:5px;text-align:center;}
+	#big{width:400px;height:400px;border:1px solid #ccc;overflow:hidden;position:absolute;top:0;left:360px;display:none;}
+	#mask{width:175px;height:175px;background:url(images/4m.jpg);position:absolute;top:0;left:0;display:none;}
+	.bigImage{position:absolute;top:0;left:0;}
+	#small{position:relative;cursor:move;}
+	#layer{position:absolute;top:0;left:0;width:350px;height:350px;background:gray;opacity:0.4;display:none;}
+</style>
+    <script src="js/jquery-3.2.1.js"></script>
+</head>
+<body>
+<div id="box">
+	<div id="small" class="small">
+         <img src="images/1m.jpg" alt="" id="mm"/> 
+         <img src="images/2m.jpg" alt=""/> 
+         <img src="images/3m.jpg" alt=""/> 
+         <img src="images/4m.jpg" alt=""/>
+         <div id="layer"></div>
+    	 <div id="mask" style="display: block;"></div>   
+    </div>
+    <div id="big">
+		<img src="images/1b.jpg" class="bigImage"/>
+		<img src="images/2b.jpg" class="bigImage"/>
+		<img src="images/3b.jpg" class="bigImage"/>
+		<img src="images/4b.jpg" class="bigImage"/>
+	</div>
+	<ul id="bottom">
+        <li><img src="images/1s.jpg" alt=""/></li>
+        <li><img src="images/2s.jpg" alt=""/></li>
+        <li><img src="images/3s.jpg" alt=""/></li>
+        <li><img src="images/4s.jpg" alt=""/></li>
+    </ul>
+</div>
+	
+</body>
+</html>
+<script type="text/javascript">
+	$("#bottom li").mouseenter(function(){
+		$("#small img").eq($(this).index()).show().siblings().hide();
+		$("#big img").eq($(this).index()).show().siblings().hide();
+		$("#mask").css("background","url(images/"+ ($(this).index() + 1) +"m.jpg)")
+	});
+	$("#small").on({
+		"mouseenter":function(){
+			$("#big").show();
+			$("#mask").show();
+			$("#layer").show();
+		},
+		"mouseleave":function(){
+			$("#big").hide();
+			$("#mask").hide();
+			$("#layer").hide();
+		},
+		"mousemove":function(e){
+			var evt = e || event;
+			var X = evt.pageX - $("#small").offset().left - $("#mask").width()/2;
+			var Y = evt.pageY - $("#small").offset().top - $("#mask").height()/2;
+			//选择框最大的偏移距离
+			var maxL = $("#small").width() - $("#mask").width();
+			var maxT = $("#small").height() - $("#mask").height();
+			//边界检测
+			X = X <= 0 ? 0 : X <= maxL ? X : maxL;
+			Y = Y <= 0 ? 0 : Y <= maxT ? Y : maxT;
+			//大图最大的偏移距离
+			var maxBigL = $(".bigImage").width() - $("#big").width();
+			var maxBigT = $(".bigImage").height() - $("#big").height();
+			var bigX = maxBigL / maxL * X;
+			var bigY = maxBigT / maxT * Y;
+			$("#layer").show();
+			$("#mask").css({
+				"left":X + "px",
+				"top":Y + "px",
+				"background-position-x":-X + "px",
+				"background-position-y":-Y + "px"
+			});
+			$(".bigImage").css({
+				"left":-bigX + "px",
+				"top":-bigY + "px"
+			});
+		}
+	});
+</script>
