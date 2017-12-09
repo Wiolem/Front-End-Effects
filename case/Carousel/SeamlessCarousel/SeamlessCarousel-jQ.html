@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>SeamlessCarouseljQ</title>
+		<script src="js/jquery-3.2.1.js"></script>
+	</head>
+	<style type="text/css">
+	*{margin:0;padding:0;}
+	li{list-style:none;float:left;}
+	img{width:1130px;}
+	#slide{width:1130px;overflow:hidden;margin:100px auto;}
+	ul{width:5650px;}
+	span{width:50px;height:40px;background:red;display:block;margin-right:5px;line-height:40px;text-align:center;}
+	#btn{margin:0 auto;width:300px;}
+	#left,
+	#right{width:50px;height:50px;background:rgba(0,0,0,.5);display:block;position:absolute;top:220px;font-size:30px;color:#ddd;line-height:50px;border-radius:25px;text-align:center;cursor:pointer;}
+	#left{left:150px;}
+	#right{left:1150px;}
+	</style>
+	<body>
+		<div id="slide">
+			<ul>
+				<li> <img src="images/banner_1.jpg"/> </li>
+				<li> <img src="images/banner_2.jpg"/> </li>
+				<li> <img src="images/banner_3.jpg"/> </li>
+				<li> <img src="images/banner_4.jpg"/> </li>
+				<li> <img src="images/banner_5.jpg"/> </li>
+			</ul>
+		<div id="left"><</div>
+		<div id="right">></div>
+		</div>	
+	</body>
+</html>
+<script>	
+	//当ul运动时     阻止按钮的点击 
+	var flag = true;//值为true  允许按钮点击操作动画 
+	$("#right").click(function(){
+		if(flag){
+			flag = false;
+			//以动画的方式 将ul的marginleft调整到 -300
+			$("ul").animate({"margin-left":-1130},1000,function(){
+				//运动完成后  将ul的marginleft值恢复到 0
+				//剪切第一张图片到ul最后面
+				$("ul").css("margin-left",0)
+					   .find("li:first")
+					   .appendTo( $("ul") ); 
+				//运动完成后 将开关变成 true   按钮可以被点击
+				flag = true;
+			})
+		}
+	})
+	$("#left").click(function(){
+		if( flag ){
+			flag =false;
+			//先将最后一张图片剪切 放到ul的最前面
+			$("ul li:last").prependTo( $("ul") );
+			// 修改ul的marginleft -300
+			$("ul").css( "margin-left",-1130 );
+			//运动 ： 目标值是 0
+			$("ul").animate({"margin-left":0},1000,function(){
+				flag = true;
+			});
+		}
+	})
+</script>

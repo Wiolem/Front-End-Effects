@@ -7,14 +7,17 @@
 		*{margin:0;padding:0;}
 		body{height:3000px;}
 		li{list-style:none;}
+		header{height:100px;}
 		nav{height:50px;background:#01204F;}
-		div{width:1000px;margin:0 auto;position:relative;}
+		div{width:1000px;position:relative;margin:0 auto;}
 		ul{color:#fff;height:50px;position:absolute;left:50%;margin-left:-332px;}
 		ul li{display:inline-block;float:left;height:50px;line-height:50px;padding:0 20px;cursor:pointer;}
 		.box{display:block;height:50px;background:red;position:absolute;left:168px;}
+		.top{position: fixed;top: 0;width: 100%;}
 	</style>
 </head>
 <body>
+	<header></header>
 	<nav>
 		<div>
 			<span class="box"></span>
@@ -59,9 +62,13 @@
 	}
 
 	window.onscroll = function(){
-		oNav.style.top = 0;
-		oNav.style.position = "fixed";
-		oNav.style.width = "100%";
+		var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+		if (scrollTop > 100) {
+			oNav.className = "top";
+		}else{
+			oNav.className = "";
+		}
+		
 	}
  </script>
 </html>

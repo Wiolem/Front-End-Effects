@@ -5,6 +5,7 @@
     <title>Wiolem</title>
     <link rel="stylesheet" type="text/css" href="css/common.css">
     <link rel="stylesheet" type="text/css" href="css/index.css">
+    <script type="text/javascript" src="js/jquery-3.2.1.js"></script>
     <script type="text/javascript" src="js/ripple.js"></script>
 </head>
 <body>
@@ -16,72 +17,17 @@
             <section id="w_msg" class="w_msg">
                 <h2 data-ripple id="btn_w">WIOLEM</h2>
             </section>
-            <script type="text/javascript">
-                Array.prototype.forEach.call(document.querySelectorAll('[data-ripple]'), function(element){
-                    new RippleEffect(element);
-                });
-            </script>
             <!-- case -->
-            <section id="w_case" class="w_case">
-                <span data-ripple id="btn_close">X</span>
-                <ul>
-                    <li><a target="_blank" href="case/Accordion/accordion_h.html">Accordion_H-CSS</a></li>
-                    <li><a target="_blank" href="case/Accordion/accordion_v.html">Accordion_V-CSS</a></li>
-                    <li><a target="_blank" href="case/BreakWall/BreakWall.html">BreakWall-JS</a></li>
-                    <li><a target="_blank" href="case/ChatFeature/ChatFeature.html">ChatFeature-JS</a></li>
-                    <li><a target="_blank" href="case/CountDown/CountDown.html">CountDown-JS</a></li>
-                    <li><a target="_blank" href="case/CustomBtnMenu/CustomBtnMenu.html">CustomBtnMenu-JS</a></li>
-                    <li><a target="_blank" href="case/CeilingNav/CeilingNav.html">CeilingNav-JS</a></li>
-                    <li><a target="_blank" href="case/CountDown/DigitalClock.html">DigitalClock-JS</a></li>
-                    <li><a target="_blank" href="case/Dilraba/dilraba.html">Dilraba-CSS</a></li>
-                    <li><a target="_blank" href="case/Cat/cat.html">Doraemon-CSS</a></li>
-                    <li><a target="_blank" href="case/EditTable/EditTable.html">EditTable-JS</a></li>
-                    <li><a target="_blank" href="case/e-Album/e-album.html">e-Album-CSS</a></li>
-                    <li><a target="_blank" href="case/FireFly/FireFly.html">FireFly-JS</a></li>
-                    <li><a target="_blank" href="case/Firework/Firework.html">Firework-JS</a></li>
-                    <li><a target="_blank" href="case/FlipPicture/flipPicture.html">FlipPicture-CSS</a></li>
-                    <li><a target="_blank" href="case/FormValidation/FormValidation.html">FormValidation-JS</a></li>
-                    <li><a target="_blank" href="case/FoldFan/foldFan.html">FoldFan-CSS</a></li>
-                    <li><a target="_blank" href="case/Magnifier/MagnifierCSS/magnifier.html">Magnifier-CSS</a></li>
-                    <li><a target="_blank" href="case/Magnifier/MagnifierJS/Magnifier.html">Magnifier-JS</a></li>
-                    <li><a target="_blank" href="case/Magnifier/MagnifierjQ/Magnifier.html">Magnifier-jQ</a></li>
-                    <li><a target="_blank" href="case/MouseDrag/MouseDrag.html">MouseDrag-JS</a></li>
-                    <li><a target="_blank" href="case/PlaneWars/index.html">PlaneWars-JS</a></li>
-                    <li><a target="_blank" href="case/ProgressBar/ProgressBar.html">ProgressBar-JS</a></li>
-                    <li><a target="_blank" href="case/RotateAlbum/rotateAlbum.html">RotateAlbum-CSS</a></li>
-                    <li><a target="_blank" href="case/ScaleFlower/scaleFlower.html">ScaleFlower-CSS</a></li>
-                    <li><a target="_blank" href="case/SimpleCalendar/SimpleCalendar.html">SimpleCalender-JS</a></li>
-                    <li><a target="_blank" href="case/Square/square.html">Square-CSS</a></li>
-                    <li><a target="_blank" href="case/SubNav/SubNavCSS.html">SubNav-CSS</a></li>
-                    <li><a target="_blank" href="case/SubNav/SubNavJS.html">SubNav-JS</a></li>
-                    <li><a target="_blank" href="case/SkinPeeler/index.html">SkinPeeler-JS</a></li>
-                    <li><a target="_blank" href="case/SelectWidget/SelectWidget.html">SelectWidget-JS</a></li>
-                    <li><a target="_blank" href="case/Carousel/Carousel/Carousel.html">SimpleCarousel-JS</a></li>
-                    <li><a target="_blank" href="case/Carousel/SuperCarousel/SuperCarousel.html">SuperCarousel-JS</a></li>
-                    <li><a target="_blank" href="case/Carousel/SeamlessCarousel/SeamlessCarousel-Default.html">SeamlessCarousel-Default-JS</a></li>
-                    <li><a target="_blank" href="case/Carousel/SeamlessCarousel/SeamlessCarousel-Taobao.html">SeamlessCarousel-Taobao-JS</a></li>
-                    <li><a target="_blank" href="case/TabControl/TabControl.html">TabControl-JS</a></li>
-                    <li><a target="_blank" href="case/WaterFall/WaterFall.html">WaterFall-JS</a></li>
-                </ul>
+            <section id="w_case" class="w_case clearfix">
+                <span data-ripple class="btn_close">X</span>
+                <div class="w_case_box">
+                    <ul class="w_case_list">
+                    </ul>
+                </div>
             </section>
         </div>
     </div>
 </body>
-<script>
-    var oMsg = document.getElementById("w_msg");
-    var oCase = document.getElementById("w_case");
-    var oBtn = document.getElementById("btn_w");
-    var aA = oCase.getElementsByTagName("a");
-    var oBtnClose = document.getElementById("btn_close");
-    oBtn.onclick = function () {
-        setTimeout(()=>{
-            oMsg.style.display = "none";
-            oCase.style.display = "block";
-        },500)    
-    }
-    oBtnClose.onclick = function () {
-        oCase.style.display = "none";
-        oMsg.style.display = "block";
-    }
-</script>
+<script type="text/javascript" src="js/data.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
 </html>
