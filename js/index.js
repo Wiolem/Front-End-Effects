@@ -26,3 +26,14 @@ $(".btn_close").click(function() {
     $("#w_case").hide();
     $("#w_msg").show();
 });
+$(window).scroll(function(){
+    console.log( $(document).scrollTop() );
+    if ($(document).scrollTop() > 700) {
+        $(".back_top").show();
+    }else{
+        $(".back_top").hide();
+    }
+})
+$(".b_t_top").click(function(){
+    $("body,html").animate({"scrollTop":0},1000);
+});
