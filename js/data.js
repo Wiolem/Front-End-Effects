@@ -25,6 +25,7 @@ var obj = [{"name" : "Accordion_H-CSS","href" : "case/Accordion/AccordionCSS/acc
           {"name":"ScaleFlower-CSS","href" : "case/ScaleFlower/scaleFlower.html"},
           {"name":"SimpleCalender-JS","href" : "case/SimpleCalendar/SimpleCalendar.html"},
           {"name":"Square-CSS","href" : "case/Square/square.html"},
+          {"name":"StairWay-jQ","href" : "case/StairWay/stairway.html"},
           {"name":"StarRating-jQ","href" : "case/StarRating/StarRating.html"},
           {"name":"SubNav-CSS","href" : "case/SubNav/SubNavCSS.html"},
           {"name":"SubNav-JS","href" : "case/SubNav/SubNavJS.html"},
