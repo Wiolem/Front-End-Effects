@@ -71,14 +71,16 @@
 		var oCon = $$(".container");
 		var aBox = $$(".box",true);
 		var maxNum = Math.floor(document.documentElement.clientWidth / aBox[0].offsetWidth);//8
-		console.log(maxNum);
 		oCon.style.width = maxNum * aBox[0].offsetWidth + "px";
 
 		var aHeight = [];
 		for (var i = 0; i < aBox.length; i++) {
 			if (i < maxNum) {
 				aHeight.push(aBox[i].offsetHeight);
-				console.log(aHeight);
+				//清空定位属性
+				aBox[i].style.position = "relative";
+				aBox[i].style.top = "";
+				aBox[i].style.left = "";
 			}else{
 				var minHeight = Math.min.apply(false,aHeight);
 				var minIndex = aHeight.indexOf(minHeight);
@@ -92,7 +94,7 @@
 	}
 
 	//自动加载
-	onscroll = function(){
+	window.onscroll = function(){
 		var oCon = $$(".container");
 		var aBox = $$(".box",true);
 		var cHeight = document.documentElement.clientHeight;
@@ -108,6 +110,10 @@
            	oCon.innerHTML += sHtml;
            	load();
         }
+	}
+	//自适应窗口
+	window.onresize = function(){
+		load();
 	}
 </script>
 </html>
