@@ -57,6 +57,10 @@
 		color: honeydew;
 		background-size: contain;
 	}
+	img{
+		width: 100%;
+		background: url(img/loading.gif) 50% no-repeat;}
+	}
 </style>
 </head>
 <body>
@@ -74,24 +78,45 @@
 		</ul>
 	</div>
 	<div id="main">
-		<section style="background: url(img/680.jpg) no-repeat center;""></section>
-		<section style="background: url(img/680-1.jpg) no-repeat center;"></section>
-		<section style="background: url(img/680-2.jpg) no-repeat center;"></section>
-		<section style="background: url(img/680-3.jpg) no-repeat center;"></section>
-		<section style="background: url(img/680-4.jpg) no-repeat center;"></section>
-		<section style="background: url(img/680-5.jpg) no-repeat center;"></section>
-		<section style="background: url(img/680-6.jpg) no-repeat center;"></section>
-		<section style="background: url(img/680-7.jpg) no-repeat center;"></section>
+		<section>
+			<img src="img/blank.gif" data-echo="img/680.jpg">
+		</section>
+		<section>
+			<img src="img/blank.gif" data-echo="img/680-1.jpg">
+		</section>
+		<section>
+			<img src="img/blank.gif" data-echo="img/680-2.jpg">
+		</section>
+		<section>
+			<img src="img/blank.gif" data-echo="img/680-3.jpg">
+		</section>
+		<section>
+			<img src="img/blank.gif" data-echo="img/680-4.jpg">
+		</section>
+		<section>
+			<img src="img/blank.gif" data-echo="img/680-5.jpg">
+		</section>
+		<section>
+			<img src="img/blank.gif" data-echo="img/680-6.jpg">
+		</section>
+		<section>
+			<img src="img/blank.gif" data-echo="img/680-7.jpg">
+		</section>
 	</div>
 </body>
 </html>
 <script type="text/javascript" src="js/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="js/echo.js"></script>
 <script type="text/javascript">
 	var flag = true;
 	var index = 0;
 	$("#LoutiNav").on("click","li:not(:last)",function(){
 		index = $(this).index();
 		move();
+	});
+	Echo.init({
+		offset: 10,//离可视区域多少像素的图片可以被加载
+		throttle: 20 //图片延时多少毫秒加载
 	});
 	$(window).scroll(function(){
 		if (flag) {
