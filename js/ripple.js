@@ -1,7 +1,4 @@
-/**
- *
- *
- */
+
 function RippleEffect(element){
     this.element = element;
     this.element.addEventListener('click', this.run.bind(this), false);

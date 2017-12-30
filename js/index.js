@@ -1,39 +1,50 @@
-Array.prototype.forEach.call(document.querySelectorAll('[data-ripple]'),
-    function(element) {
-        new RippleEffect(element);
-    });
-$("#btn_w").click(function() {
-    setTimeout(() => {
-        $("#w_msg").hide();
-        $("#w_case").show();
-        obj.forEach(function(item) {
-            $(".w_case_list").append(`<div class="card_box">
-                                    <div class="card_img">
-                                        <a target="_blank" href="${item.href}"><img src="https://picsum.photos/g/210/158/?image=${Math.round(Math.random() * 1084)}&gravity=east" alt=""></a>
-                                    </div>
-                                    <a target="_blank" class="card_title" href="${item.href}">${item.name}</a>
-                                </div>`);
+function Index() {
+    this.btn = $("#btn_w");
+    this.msg = $("#w_msg");
+    this.case = $("#w_case");
+    this.back = $(".b_t_top");
+    this.btnClose = $(".btn_close");
+    this.init();
+}
+$.extend(Index.prototype, {
+    init() {
+        this.initRipple();
+        this.hide();
+        this.backTop();
+        this.close();
+    },
+    initRipple() {
+        Array.prototype.forEach.call(document.querySelectorAll('[data-ripple]'),
+            function(element) {
+                new RippleEffect(element);
+            });
+    },
+    hide() {
+        this.btn.click(() => {
+            setTimeout(() => {
+                this.msg.hide();
+                new Case(this.case, obj);
+            }, 500)
         });
-    }, 500)
-});
-$(".w_case_list").on("mouseenter", ".card_box", function() {
-    $(this).children().fadeTo(0, 0.8);
-});
-$(".w_case_list").on("mouseleave", ".card_box", function() {
-    $(this).children().fadeTo(0, 1);
-});
-$(".btn_close").click(function() {
-    $("#w_case").hide();
-    $("#w_msg").show();
-});
-$(window).scroll(function(){
-    console.log( $(document).scrollTop() );
-    if ($(document).scrollTop() > 700) {
-        $(".back_top").show();
-    }else{
-        $(".back_top").hide();
+    },
+    backTop() {
+        $(window).scroll(() => {
+            if ($(document).scrollTop() > 700) {
+                $(".back_top").show();
+            } else {
+                $(".back_top").hide();
+            }
+        });
+        this.back.click(() => {
+            $("body,html").animate({
+                "scrollTop": 0
+            }, 1000);
+        });
+    },
+    close() {
+        this.btnClose.click(() => {
+            this.case.hide();
+            this.msg.show();
+        });
     }
-})
-$(".b_t_top").click(function(){
-    $("body,html").animate({"scrollTop":0},1000);
 });

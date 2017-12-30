@@ -23,7 +23,7 @@
         }
     </style>
     <script src="js/jquery-3.2.1.js"></script>
-  
+
 </head>
 <body>
 <div class="wrap">
@@ -38,11 +38,9 @@
 </body>
 </html>
 <script type="text/javascript">
-	//通过遍历每一个li为他们添加一个背景图片
 	$("li").each(function(index){
 		$(this).css("background-image","url(images/"+(index+1)+".jpg)");
 	}).mouseenter(function(){
-		//当前图片的宽度  600  其余 100
 		$(this).stop().animate({width:600},1000)
 			   .siblings()
 			   .stop().animate({width:100},1000)
