@@ -1,6 +1,7 @@
 var obj = [{"name" : "Accordion_H-CSS","href" : "case/Accordion/AccordionCSS/accordion_h.html"},
           {"name" : "Accordion_H-jQ","href" : "case/Accordion/AccordionjQ/accordionjq.html"},
           {"name":"BreakWall-JS","href" : "case/BreakWall/BreakWall.html"},
+          {"name":"ClockCanvas-JS","href" : "case/ClockCanvas/clock.html"},
           {"name":"ChatFeature-JS","href" : "case/ChatFeature/ChatFeature.html"},
           {"name":"CountDown-JS","href" : "case/CountDown/CountDown.html"},
           {"name":"CustomBtnMenu-JS","href" : "case/CustomBtnMenu/CustomBtnMenu.html"},
