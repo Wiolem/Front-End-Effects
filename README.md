@@ -1,6 +1,10 @@
-# Front-End-Effects wiolem
-## ---> [Front-End-Effects](https://wiolem.github.io/Front-End-Effects/)
-## list
+# Front-End-Effects (wiolem)
+## [Front-End-Effects](https://wiolem.github.io/Front-End-Effects/)
+![image](https://github.com/Wiolem/Front-End-Effects/blob/master/images/home.png)
+![image](https://github.com/Wiolem/Front-End-Effects/blob/master/images/c_1.png)
+![image](https://github.com/Wiolem/Front-End-Effects/blob/master/images/c_2.png)
+![image](https://github.com/Wiolem/Front-End-Effects/blob/master/images/c_3.png)
+## List
 1. [Accordion_H-CSS](https://wiolem.github.io/Front-End-Effects/case/Accordion/AccordionCSS/accordion_h.html)
 2. [Accordion_H-jQ](https://wiolem.github.io/Front-End-Effects/case/Accordion/AccordionjQ/accordionjq.html)
 3. [BreakWall-JS](https://wiolem.github.io/Front-End-Effects/case/BreakWall/BreakWall.html)
