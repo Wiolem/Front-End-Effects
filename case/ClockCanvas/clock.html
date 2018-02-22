@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="canvas" width="500" height="500"></canvas>
+</body>
+<script type="text/javascript">
+
+  function Clock(ele) {
+    this.ctx = ele.getContext("2d");
+    this.time = new Date()
+
+  }
+  Clock.prototype = {
+
+    constructor: Clock,
+
+    init: function() {
+      this.initCenter();
+      this.createClock();
+      this.startAnimate();
+    },
+
+    createClock: function() {
+      this.createClockFace();
+      this.drawScale();
+      this.drawNumbers();
+      this.drawHourPointer();
+      this.drawMinutePointer();
+      this.drawSecondsPointer();
+    },
+
+    initCenter: function() {
+      this.ctx.translate(250, 250);
+    },
+
+    startAnimate: function() {
+      var _this = this;
+      setInterval(function(){
+        _this.clearScreen();
+        _this.createClock();
+      }, 1000)
+    },
+
+    clearScreen: function() {
+      this.ctx.clearRect(0, 0, -250, -250, 500, 500);
+      this.time = new Date();
+    },
+
+    createClockFace: function() {
+      this.ctx.beginPath();
+      this.ctx.arc(0, 0, 100, 0, Math.PI * 2);
+      this.ctx.fillStyle = "#eee";
+      this.ctx.fill();
+      this.ctx.fillStyle = "#333";
+      this.ctx.stroke();
+      this.ctx.beginPath();
+      this.ctx.arc(0, 0, 4, 0, Math.PI * 2);
+      this.ctx.fillStyle = "#333";
+      this.ctx.fill();
+    },
+
+    drawScale: function() {
+      for (var i = 1; i <= 60; i++) {
+        this.ctx.beginPath();
+        this.ctx.save();
+        this.ctx.rotate(i * Math.PI / 30);
+        if (i % 5) {
+          this.ctx.moveTo(0, -98)
+          this.ctx.lineTo(0, -94)
+        } else {
+          this.ctx.moveTo(0, -98)
+          this.ctx.lineTo(0, -90)
+        }
+        this.ctx.stroke()
+        this.ctx.restore()
+      }
+    },
+
+    drawNumbers: function() {
+      for (var i = 1; i <= 12; i++) {
+        this.ctx.beginPath()
+        var x = Math.sin(i * Math.PI / 6) * 80,
+            y = - Math.cos(i * Math.PI / 6) * 80;
+        this.ctx.textAlign = "center";
+        this.ctx.textBaseline = "middle";
+        this.ctx.fillText(i, x, y);
+      }
+    },
+
+    drawHourPointer: function() {
+      var hour = this.time.getHours() + this.time.getMinutes() / 60 - 12;
+      this.ctx.beginPath();
+      this.ctx.save();
+      this.ctx.rotate(hour * Math.PI / 6);
+      this.ctx.moveTo(0, -50);
+      this.ctx.lineTo(0, 10);
+      this.ctx.stroke();
+      this.ctx.restore();
+    },
+
+    drawMinutePointer: function() {
+      var minute = this.time.getMinutes()
+      this.ctx.beginPath();
+      this.ctx.save();
+      this.ctx.rotate(minute * Math.PI / 30);
+      this.ctx.moveTo(0, -60);
+      this.ctx.lineTo(0, 20);
+      this.ctx.stroke();
+      this.ctx.restore();
+    },
+
+    drawSecondsPointer: function() {
+      var seconds = this.time.getSeconds()
+      this.ctx.beginPath();
+      this.ctx.save();
+      this.ctx.rotate(seconds * Math.PI / 30);
+      this.ctx.moveTo(0, -70);
+      this.ctx.lineTo(0, 30);
+      this.ctx.stroke();
+      this.ctx.restore();
+    }
+  }
+  var canvasEle = document.getElementById("canvas");
+  var clock = new Clock(canvasEle);
+  clock.init()
+
+</script>
+</html>
